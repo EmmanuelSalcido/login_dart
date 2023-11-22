@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597534191579",
+    "project_id": "login-dart",
+    "storage_bucket": "login-dart.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597534191579:android:ec275566b0ed4a230441fe",
+        "android_client_info": {
+          "package_name": "com.example.login_dart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfhg-Ff2OOS3zphtWQphGLMUl8ftVh0mA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
