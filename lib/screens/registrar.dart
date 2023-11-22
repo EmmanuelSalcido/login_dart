@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:login_dart/providers/auth_provider.dart';
+import 'package:login_dart/providers/auth_provider.dart' as MyAppAuthProvider;
+import 'package:login_dart/screens/home_screen.dart';
 import 'package:login_dart/screens/login.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -43,27 +45,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ElevatedButton(
               onPressed: () async {
                 try {
-                  await Provider.of<AuthProvider>(context, listen: false)
+                  await Provider.of<MyAppAuthProvider.AuthProvider>(context, listen: false)
                       .register(
+                    context,
                     _nickController.text,
                     _emailController.text,
                     _passwordController.text,
                   );
 
-                 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Registro exitoso'),
-                    ),
-                  );
-
+                  // Redirige al usuario a la pantalla de inicio de sesión
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
                       builder: (context) => LoginScreen(),
                     ),
                   );
+                } on FirebaseAuthException catch (e) {
+                  // Manejo de excepciones específicas de FirebaseAuth
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Error durante el registro: ${e.message}'),
+                    ),
+                  );
                 } catch (e) {
-         
+                  // Manejo de errores generales
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text('Error durante el registro: $e'),
